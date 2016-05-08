@@ -6,20 +6,17 @@ class Root : public Ratio
 {
 public:
 	Root(unsigned i);
-
-	template <typename charT, typename traits>
-	friend std::basic_ostream<charT, traits>& operator<<(std::basic_ostream<charT, traits>& ostr, const Root& rhs)
-	{
-		ostr << rhs;
-		for(auto& a : rhs.ir) {
-			if(a.first == 1) ostr << a.second;
-			//else if(a.second == Ratio(1, 1)) ostr << "_/" << a.first;
-			else ostr << a.second << "_/" << a.first;
-		}
-		return ostr;
-	}
-	
-	
+	Root(Ratio r);
+	friend std::ostream& operator<<(std::ostream& o, const Root& rhs);
+	Root operator+(const Root& r);
+	Root operator-(const Root& r);
+	Root operator*(const Root& r);
+	Root operator/(const Root& r);
+	Root operator/(const Ratio& r);
+	Root operator*(const Ratio& r);
+	Root operator-(const Ratio& r);
+	Root operator+(const Ratio& r);
+	bool isRational();
 	
 protected:
 	std::map<unsigned, Ratio> ir;

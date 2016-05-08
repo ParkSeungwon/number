@@ -6,32 +6,26 @@ class Ratio
 {
 public:
 	Ratio(int n, int den = 1);
-	Ratio();
+	Ratio() {n=0; den=1;}
 	Ratio operator+(const Ratio& r);
-	Ratio operator+(int r);
-	Ratio operator-(int r);
-	Ratio operator*(int r);
-	Ratio operator/(int r);
 	Ratio operator-(const Ratio& r);
 	Ratio operator*(const Ratio& r);
 	Ratio operator/(const Ratio& r);
 	Ratio operator=(const Ratio& r);
-	bool operator==(const Ratio& r);
-	bool operator==(int r);
+	bool operator==(const Ratio& r) {return (n == r.n) && (den == r.den);}
 	bool operator>(const Ratio& r);
 	bool operator<(const Ratio& r);
+	bool operator==(int r) { return (n == r) && (den == 1); }
+	Ratio operator+(int r);
+	Ratio operator-(int r);
+	Ratio operator*(int r);
+	Ratio operator/(int r);
 
-	template <typename charT, typename traits>
-	friend std::basic_ostream<charT, traits>& operator<<(std::basic_ostream<charT, traits>& ostr, const Ratio& rhs)
-	{
-		if(rhs.den == 1) ostr << rhs.n;
-		else ostr << rhs.n << '/' << rhs.den;
-		return ostr;
-	}
+	friend std::ostream& operator<<(std::ostream& ostr, const Ratio& rhs);
+	int n, den;
 
 protected:
 	std::vector<unsigned> prime_div(int num);
 
 private:
-	int n, den;
 };

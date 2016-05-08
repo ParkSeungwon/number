@@ -6,7 +6,7 @@ OBJ = $(patsubst %.cc, %.o, $(SRC))
 all : $(OBJ)
 	$(CC) -o test $(OBJ) -lpthread
 
-%.o : %.cc 
+%.o : %.cc %.h
 	$(CC) $< $(CFLAG)
 
 clean:

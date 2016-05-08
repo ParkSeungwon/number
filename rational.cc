@@ -39,11 +39,6 @@ Ratio::Ratio(int n, int d)
 	this->den = sum;
 }
 
-Ratio::Ratio()
-{
-	n = 0; den = 1;
-}
-
 Ratio Ratio::operator+(const Ratio& r)
 {
 	int i = n * r.den + r.n * den;
@@ -103,16 +98,6 @@ Ratio Ratio::operator/(int r)
 	return Ratio(n, i);
 }
 
-bool Ratio::operator==(const Ratio& r)
-{
-	return (n == r.n) && (den == r.den);
-}
-
-bool Ratio::operator==(int r)
-{
-	return (n == r) && (den == 1);
-}
-
 bool Ratio::operator<(const Ratio& r)
 {
 	Ratio t = *this - r;
@@ -149,4 +134,10 @@ vector<unsigned int> Ratio::prime_div(int num)
 	}
 }
 
+ostream& operator<<(ostream& ostr, const Ratio& rhs)
+{
+	if(rhs.den == 1) ostr << rhs.n;
+	else ostr << rhs.n << '/' << rhs.den;
+	return ostr;
+}
 
