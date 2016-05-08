@@ -103,7 +103,7 @@ Root Root::operator/(const Root& r)
 		t = tm * t;
 		tm = t;
 	}
-	return t * up * *this;
+	return up * *this / t.ir[1];
 }
 
 bool Root::isRational()
@@ -115,9 +115,6 @@ bool Root::isRational()
 	else return false;
 }
 	
-
-
-
 ostream& operator<<(ostream& o, const Root& rhs)
 {
 	for(auto& a : rhs.ir) {

@@ -1,5 +1,6 @@
 #include "rational.h"
 #include "irrational.h"
+#include "imaginary.h"
 #include <iostream>
 using namespace std;
 
@@ -24,8 +25,16 @@ int main()
 	cout << k << " * " << u << " = " << k*u << endl;
 	cout << k << " + " << u << " = " << k+u << endl;
 	cout << k << " - " << u << " = " << k-u << endl;
-	cout << k << " / " << u << " = " << k/u << endl;
+	cout << k << " / " << Root(7)+Root(2) << " = " << (k/(Root(7)+Root(2))) << endl;
+	Root a = k;
+	cout << a << endl;
+	cout << Root(3)/Root(2) << endl;
+	Imag im(Root(3), Root(3));
+	cout << im << endl;
+	cout << im / Imag(Root(3), Root(12))<< endl;
 
+	im = Imag(Root(1), Root(0));
+	Imag i2 = Imag(Root(Ratio(3,4)), Root(Ratio(1,4)));
+	cout << im << endl << i2 << endl << im * i2 * i2 * i2 <<endl;
 
-	
 }
