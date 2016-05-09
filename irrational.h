@@ -12,10 +12,11 @@ public:
 	Root operator-(const Root& r);
 	Root operator*(const Root& r);
 	Root operator/(const Root& r);
+	bool operator==(const Root& r);
 	bool isRational();
+	std::map<unsigned, Ratio> ir;
 	
 protected:
-	std::map<unsigned, Ratio> ir;
 
 private:
 };

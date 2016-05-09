@@ -35,6 +35,7 @@ Root Root::operator+(const Root& r)
 		if(ir.find(a.first) == ir.end()) t.ir[a.first] = a.second;
 		else t.ir[a.first] = ir[a.first] + a.second;
 	}
+	for(auto& a : t.ir) if(a.second == 0) t.ir.erase(a.first);
 	return t;
 }
 Root Root::operator-(const Root& r)
@@ -44,6 +45,7 @@ Root Root::operator-(const Root& r)
 		if(ir.find(a.first) == ir.end()) t.ir[a.first] = Ratio(0) - a.second;
 		else t.ir[a.first] = ir[a.first] - a.second;
 	}
+	for(auto& a : t.ir) if(a.second == 0) t.ir.erase(a.first);
 	return t;
 }
 
@@ -61,6 +63,7 @@ Root Root::operator*(const Root& r)
 			ret = ret + tmp;
 		}
 	}
+	for(auto& a : ret.ir) if(a.second == 0) ret.ir.erase(a.first);
 	return ret;
 }
 
@@ -79,6 +82,7 @@ Root Root::operator/(const Root& r)
 	}
 	tm = up * *this;
 	for(auto& a : tm.ir) a.second = a.second / t.ir[1];
+	for(auto& a : tm.ir) if(a.second == 0) tm.ir.erase(a.first);
 	return tm;
 }
 
@@ -90,8 +94,20 @@ bool Root::isRational()
 	else if(ir.find(1) != ir.end()) return true;
 	else return false;
 }
+
+bool Root::operator==(const Root& r)
+{
+	if(ir.size() == r.ir.size()) {
+		for(auto& a : r.ir) {
+			if(ir[a.first] == a.second) ;
+			else return false;
+		}
+	}
+	return true;
+}
+
 	
-ostream& operator<<(ostream& o, const Root& rhs)
+ostream& operator<<(ostream& o, Root& rhs)
 {
 	for(auto& a : rhs.ir) {
 		if(!((Ratio)a.second == 0)) {

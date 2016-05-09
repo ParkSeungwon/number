@@ -10,9 +10,10 @@ public:
 	Imag operator-(const Imag& im);
 	Imag operator*(const Imag& im);
 	Imag operator/(const Imag& im);
+	bool operator==(const Imag& im) {return real == im.real && imag == im.imag;}
 	friend std::ostream& operator<<(std::ostream& o, const Imag& i);
 	Root real, imag;
-	Root abs() {return Root(real*real + imag*imag);}
+	Root abs() {return real*real + imag*imag;}
 
 protected:
 };
