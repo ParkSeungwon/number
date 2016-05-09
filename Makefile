@@ -4,7 +4,7 @@ SRC = $(wildcard *.cc)
 OBJ = $(patsubst %.cc, %.o, $(SRC))
 
 all : $(OBJ)
-	$(CC) -o test $(OBJ) -lpthread
+	$(CC) -o tri $(OBJ) -lpthread
 
 %.o : %.cc %.h
 	$(CC) $< $(CFLAG)

@@ -17,6 +17,7 @@ Root::Root(unsigned i, unsigned e)
 		for(auto& a : v) sum *= a;
 		ir.insert({sum, Ratio(fr)});
 	} else ir.insert({1, i});
+	for(auto& a : ir) if(a.second == 0) ir.erase(a.first);
 }
 
 Root::Root(Ratio r, unsigned e)
@@ -102,16 +103,15 @@ bool Root::operator==(const Root& r)
 			if(ir[a.first] == a.second) ;
 			else return false;
 		}
-	}
-	return true;
+		return true;
+	} else return false;
 }
 
 	
-ostream& operator<<(ostream& o, Root& rhs)
+ostream& operator<<(ostream& o, const Root& rhs)
 {
 	for(auto& a : rhs.ir) {
 		if(!((Ratio)a.second == 0)) {
-			cout << ' ';
 			if((Ratio)a.second > 0) cout << '+';
 			if(a.first == 1) o << a.second;
 			else if((Ratio)a.second == 1) o << "_/" << a.first;//first, second는 자신이 무슨 형식인지 알지못함.

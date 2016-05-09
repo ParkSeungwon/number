@@ -41,6 +41,6 @@ Imag Imag::operator/(const Imag& im2)
 
 ostream& operator<<(ostream& o, const Imag& im)
 {
-	o << '(' << im.real << ") + (" << im.imag << ')' << 'i';
+	o << '(' << im.real << ")+(" << im.imag << ')' << 'i';
 	return o;
 }
