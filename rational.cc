@@ -17,8 +17,8 @@ Ratio::Ratio(int n, int d)
 		this->den = 1;
 		return;
 	}
-	auto np = prime_div(n);
-	auto dp = prime_div(d);
+	auto np = Ratio::prime_div(n);
+	auto dp = Ratio::prime_div(d);
 	auto nit = np.begin();
 	auto dit = dp.begin(); 
 	while(nit != np.end() && dit != dp.end()) {
@@ -65,37 +65,6 @@ Ratio Ratio::operator/(const Ratio& r)
 	int i = n * r.den;
 	int d = den * r.n;
 	return Ratio(i, d);
-}
-
-Ratio Ratio::operator=(const Ratio& r)
-{
-	n = r.n;
-	den = r.den;
-	return *this;
-}
-
-Ratio Ratio::operator+(int r)
-{
-	int i = n + r * den;
-	return Ratio(i, den);
-}
-
-Ratio Ratio::operator-(int r)
-{
-	int i = n - r * den;
-	return Ratio(i, den);
-}
-
-Ratio Ratio::operator*(int r)
-{
-	int i = n * r;
-	return Ratio(i, den);
-}
-
-Ratio Ratio::operator/(int r)
-{
-	int i = den * r;
-	return Ratio(n, i);
 }
 
 bool Ratio::operator<(const Ratio& r)

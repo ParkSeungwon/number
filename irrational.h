@@ -2,21 +2,16 @@
 #include <map>
 #include "rational.h"
 
-class Root : public Ratio
+class Root 
 {
 public:
-	Root(unsigned i);
-	Root(Ratio r);
-	Root() {Root(0);}
+	Root(unsigned i = 0, unsigned e = 1);
+	Root(Ratio r, unsigned e = 1);
 	friend std::ostream& operator<<(std::ostream& o, const Root& rhs);
 	Root operator+(const Root& r);
 	Root operator-(const Root& r);
 	Root operator*(const Root& r);
 	Root operator/(const Root& r);
-	Root operator/(const Ratio& r);
-	Root operator*(const Ratio& r);
-	Root operator-(const Ratio& r);
-	Root operator+(const Ratio& r);
 	bool isRational();
 	
 protected:
