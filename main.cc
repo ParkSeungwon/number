@@ -1,6 +1,7 @@
 #include "rational.h"
 #include "irrational.h"
 #include "imaginary.h"
+#include <fstream>
 #include <iostream>
 using namespace std;
 
@@ -17,11 +18,13 @@ int main(int argc, char** argv)
 	Imag thirty(Root(Ratio(3,4),2), (Ratio(1,2)));
 	Imag forty(Root(Ratio(1,2),2), Root(Ratio(1,2),2));
 	cout << "cos15 + isin15 = " << (sixty / forty) << endl;
-	Imag zero;
+	cout << "cos75 + isin75 = " << (thirty * forty) << endl;
+	cout <<   (4*Root(3,2)+3).approx()  << endl;
+	cout << Root(31,2).approx() << endl;
 	Imag tmp;
 	for(int j=0; j<arg; j++) {
 		for(int i=0; i<arg-j; i++) {
-			v.push_back(zero + (sixty * Imag(j)) + Imag(i));
+			v.push_back(j * sixty + i);
 		}
 	}
 	for(auto& a : v) cout << a << endl;
@@ -38,8 +41,7 @@ int main(int argc, char** argv)
 				m++;
 				if(a == b && b == c) {
 					l++;
-					cout << v[i] << "  " << v[j] << "  " << v[k] << endl;
-					cout << a << b << c << endl;
+					cout << a << "   " <<  v[i] << "  " << v[j] << "  " << v[k] << endl;
 				}
 			}
 		}
@@ -60,5 +62,18 @@ int main(int argc, char** argv)
 		Ratio r;
 		for(int i=2; i<=1024; i*=2) r = r + Ratio(1, i);
 		cout << r << endl;
+	}
+
+	{
+		ofstream of("wri.txt");
+		for(auto& a : v) of << a << endl;
+	}
+
+	{
+		Ratio r(1);
+		for(int i=0; i<6; i++) {
+			r = (2*r +3)/(3*r+4);
+			cout << r << ' '<< endl;
+		}
 	}
 }

@@ -110,3 +110,27 @@ ostream& operator<<(ostream& ostr, const Ratio& rhs)
 	return ostr;
 }
 
+Ratio operator+(const Ratio& l, const Ratio& r)
+{
+	int i = l.n * r.den + r.n * l.den;
+	int d = l.den * r.den;
+	return Ratio(i, d);
+}
+Ratio operator-(const Ratio& l, const Ratio& r)
+{
+	int i = l.n * r.den - r.n * l.den;
+	int d = l.den * r.den;
+	return Ratio(i, d);
+}
+Ratio operator*(const Ratio& l, const Ratio& r)
+{
+	int i = l.n * r.n;
+	int d = l.den * r.den;
+	return Ratio(i, d);
+}
+Ratio operator/(const Ratio& l, const Ratio& r)
+{
+	int i = l.n * r.den;
+	int d = l.den * r.n;
+	return Ratio(i, d);
+}
