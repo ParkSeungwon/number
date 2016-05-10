@@ -34,8 +34,10 @@ Imag Imag::operator*(const Imag& im)
 Imag Imag::operator/(const Imag& im2)
 {
 	Imag i, im = im2; 
-	i.real = real * im.real / (im.real * im.real + im.imag * im.imag);
-	i.imag = (Root(0) - imag * im.imag) / (im.real * im.real + im.imag * im.imag);
+	im.imag = Root(0) - im.imag;
+	i = *this * im;
+	i.real = i.real / (im.real * im.real + im.imag * im.imag);
+	i.imag = i.imag / (im.real * im.real + im.imag * im.imag);
 	return i;
 }
 

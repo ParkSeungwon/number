@@ -14,6 +14,9 @@ int main(int argc, char** argv)
 	vector<Imag> v;
 	Imag one(1);
 	Imag sixty((Ratio(1,2)), (Root(Ratio(3,4),2)));
+	Imag thirty(Root(Ratio(3,4),2), (Ratio(1,2)));
+	Imag forty(Root(Ratio(1,2),2), Root(Ratio(1,2),2));
+	cout << "cos15 + isin15 = " << (sixty / forty) << endl;
 	Imag zero;
 	Imag tmp;
 	for(int j=0; j<arg; j++) {
@@ -43,15 +46,19 @@ int main(int argc, char** argv)
 	}
 	cout << l << " out of " << m << endl;
 
-/*	{
-		int a,b,c, D;
-		cin >> a >> b >> c;
+	{
+		int a = 3, b = 2, c = -1, D;
 		D = b*b-4*a*c;
 		if(D<0) D = -D;
 		Root r(D, 2);
-		cout << r << endl;
-		cout << (r-b)/(2*a) << endl;
+		cout << "3x^2 + 2x -1 = 0 " << "의 해는 ";
+		cout << (r-b)/(2*a) << ", ";
 		cout << (Root(0)-r-b)/(2*a) << endl;
 	}
-	*/
+	
+	{
+		Ratio r;
+		for(int i=2; i<=1024; i*=2) r = r + Ratio(1, i);
+		cout << r << endl;
+	}
 }
