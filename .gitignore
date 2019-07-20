@@ -3,3 +3,7 @@
 tri
 prime.x
 *.swp
+find
+.
+-size
++3M
